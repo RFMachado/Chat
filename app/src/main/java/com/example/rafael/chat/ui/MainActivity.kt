@@ -1,7 +1,8 @@
-package com.example.rafael.chat
+package com.example.rafael.chat.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.rafael.chat.R
 
 class MainActivity : AppCompatActivity() {
 
