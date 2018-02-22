@@ -7,32 +7,39 @@
     android:orientation="vertical"
     tools:context="com.example.rafael.chat.ui.MainActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </android.support.v7.widget.RecyclerView>
+
+
     <LinearLayout
-        android:id="@+id/layout_chat"
+        android:id="@+id/layout_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="bottom">
+        android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/edittext_chatbox"
+            android:id="@+id/edit_text"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Enter message"
-            android:background="@android:color/transparent"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:maxLines="6"/>
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="@string/enter_message" />
 
         <Button
             android:id="@+id/button_send"
             android:layout_width="64dp"
             android:layout_height="48dp"
-            android:text="SEND"
+            android:layout_gravity="bottom"
             android:gravity="center"
-            android:layout_gravity="bottom" />
+            android:text="@string/send" />
 
     </LinearLayout>
 
