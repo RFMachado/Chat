@@ -30,15 +30,16 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="@android:drawable/editbox_background_normal"
             android:hint="@string/enter_message" />
 
         <Button
             android:id="@+id/button_send"
-            android:layout_width="64dp"
-            android:layout_height="48dp"
-            android:layout_gravity="bottom"
-            android:gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="2dp"
             android:text="@string/send" />
 
     </LinearLayout>
