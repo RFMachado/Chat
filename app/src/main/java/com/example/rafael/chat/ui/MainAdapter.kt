@@ -30,9 +30,6 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
         @BindView(R.id.text_user1)
         lateinit var text1: TextView
 
-        @BindView(R.id.text_user2)
-        lateinit var text3: TextView
-
         init {
             ButterKnife.bind(this, itemView)
         }
