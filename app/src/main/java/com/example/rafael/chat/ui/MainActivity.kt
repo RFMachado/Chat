@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
     fun sendMessage() {
         if(input.toString() != "")
         FirebaseDatabase.getInstance()
-                .reference
+                .getReference("message")
                 .push()
-                .setValue(input.toString())
+                .setValue(input.text.toString())
 
     }
 
