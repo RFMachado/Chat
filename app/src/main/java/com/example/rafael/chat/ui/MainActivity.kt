@@ -26,12 +26,14 @@ class MainActivity : AppCompatActivity() {
 
     @OnClick(R.id.button_send)
     fun sendMessage() {
-        if(input.toString() != "")
+        if(!input.text.isEmpty())
         FirebaseDatabase.getInstance()
                 .getReference("message")
                 .push()
                 .setValue(input.text.toString())
 
+
+        input.text.clear()
     }
 
 }
