@@ -9,6 +9,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 
 import com.example.rafael.chat.R
+import com.example.rafael.chat.domain.Message
 import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
@@ -19,8 +20,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         ButterKnife.bind(this)
+
+       // val recyclerView = note_list_recyclerview
+     //   recyclerView.adapter = MainAdapter(messageReceived(), this)
 
     }
 
@@ -35,5 +38,14 @@ class MainActivity : AppCompatActivity() {
 
         input.text.clear()
     }
+
+//    fun messageReceived(): List<Message> {
+//
+//       val listMessage = FirebaseDatabase.getInstance()
+//                .getReference("message")
+//                .database
+//
+//        return listMessage
+//    }
 
 }

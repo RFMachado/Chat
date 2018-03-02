@@ -8,12 +8,15 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.rafael.chat.R
+import com.example.rafael.chat.domain.Message
+import android.content.Context
 
 
 /**
  * Created by Rafael on 22/02/2018.
  */
-class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter(private val messages: List<Message>,
+                  private val context: Context): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -22,9 +25,17 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int { return 0 }
+    override fun getItemCount(): Int { return messages.size }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) { }
+    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+        val messages = messages[position]
+
+        holder?.let {
+            it.text1.text = messages.messageText
+        }
+
+
+    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @BindView(R.id.text_user1)
