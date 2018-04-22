@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     @BindView(R.id.edit_text)
     lateinit var input: EditText
 
-    private val messageList: ArrayList<Message>? = null
+    private val messageList: ArrayList<String>? = null
 
     lateinit var childEventListener: ChildEventListener
     lateinit var mMessageReference: DatabaseReference
@@ -45,8 +45,9 @@ class MainActivity : AppCompatActivity() {
             override fun onChildAdded(dataSnapshot: DataSnapshot?, p1: String?) {
                 println("<<< Add")
 
-               // val message = dataSnapshot?.getValue(Message::class.java)
-              //  messageList?.add(message!!)
+                val message = dataSnapshot?.getValue(String::class.java)
+                messageList?.add(message ?: "")
+                println("Add : $message")
 
             }
 
