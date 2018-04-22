@@ -15,8 +15,7 @@ import android.content.Context
 /**
  * Created by Rafael on 22/02/2018.
  */
-class MainAdapter(private val messages: List<Message>,
-                  private val context: Context): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter(private val messages: ArrayList<String>): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -30,10 +29,7 @@ class MainAdapter(private val messages: List<Message>,
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val messages = messages[position]
 
-        holder?.let {
-            it.text1.text = messages.messageText
-        }
-
+        holder?.text1?.text = messages
 
     }
 
