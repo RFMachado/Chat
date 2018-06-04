@@ -26,22 +26,20 @@ class MainActivity : AppCompatActivity() {
         mMessageReference = FirebaseDatabase.getInstance().getReference("message")
 
         childEventListener = object : ChildEventListener {
-            override fun onCancelled(p0: DatabaseError?) { }
+            override fun onCancelled(p0: DatabaseError) { }
 
-            override fun onChildMoved(p0: DataSnapshot?, p1: String?) { }
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) { }
 
-            override fun onChildChanged(p0: DataSnapshot?, p1: String?) { }
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) { }
 
-            override fun onChildAdded(dataSnapshot: DataSnapshot?, p1: String?) {
-
-                val message = dataSnapshot?.getValue(Message::class.java)?.text
+            override fun onChildAdded(dataSnapshot: DataSnapshot, p1: String?) {
+                val message = dataSnapshot.getValue(Message::class.java)?.text
                 messageList.add(message ?: " ")
                 recyclerView.adapter.notifyDataSetChanged()
                 recyclerView.scrollToPosition(messageList.size - 1)
-
             }
 
-            override fun onChildRemoved(p0: DataSnapshot?) { }
+            override fun onChildRemoved(p0: DataSnapshot) { }
 
         }
 
