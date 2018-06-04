@@ -4,12 +4,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.example.rafael.chat.R
-import com.example.rafael.chat.domain.Message
-import android.content.Context
+import kotlinx.android.synthetic.main.layout_adapter.view.*
 
 
 /**
@@ -26,21 +22,13 @@ class MainAdapter(private val messages: ArrayList<String>): RecyclerView.Adapter
 
     override fun getItemCount(): Int { return messages.size }
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val messages = messages[position]
 
-        holder?.text1?.text = messages
+        holder.itemView.textUser?.text = messages
 
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        @BindView(R.id.text_user1)
-        lateinit var text1: TextView
-
-        init {
-            ButterKnife.bind(this, itemView)
-        }
-
-    }
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) { }
 
 }
