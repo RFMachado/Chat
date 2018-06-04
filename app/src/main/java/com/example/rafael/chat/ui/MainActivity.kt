@@ -1,6 +1,7 @@
 package com.example.rafael.chat.ui
 
 import android.os.Bundle
+import com.example.rafael.chat.domain.Message
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.example.rafael.chat.R
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var childEventListener: ChildEventListener
     lateinit var mMessageReference: DatabaseReference
+    var message = Message()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +34,14 @@ class MainActivity : AppCompatActivity() {
 
             override fun onChildAdded(dataSnapshot: DataSnapshot?, p1: String?) {
 
-                val message = dataSnapshot?.getValue(String::class.java)
+                val message = dataSnapshot?.getValue(Message::class.java)?.text
                 messageList.add(message ?: " ")
                 recyclerView.adapter.notifyDataSetChanged()
                 recyclerView.scrollToPosition(messageList.size - 1)
 
             }
 
-            override fun onChildRemoved(p0: DataSnapshot?) {
-            }
+            override fun onChildRemoved(p0: DataSnapshot?) { }
 
         }
 
@@ -53,12 +54,15 @@ class MainActivity : AppCompatActivity() {
 
     fun bindListeners() {
         btnSend.setOnClickListener {
-            if (!input.text.isEmpty())
+            if (!input.text.isEmpty()) {
+                message.text = input.text.toString()
+                message.userName = "TestName"
+
                 FirebaseDatabase.getInstance()
                         .getReference("message")
                         .push()
-                        .setValue(input.text.toString())
-
+                        .setValue(message)
+            }
 
             input.text.clear()
         }
