@@ -5,6 +5,7 @@ import com.example.rafael.chat.domain.Message
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.example.rafael.chat.R
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,6 +17,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var childEventListener: ChildEventListener
     lateinit var mMessageReference: DatabaseReference
     var message = Message()
+
+    private val EXTRA_USER = "user"
+    private val currentUser by lazy { intent.getParcelableExtra(EXTRA_USER) as FirebaseUser? }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,11 +54,11 @@ class MainActivity : AppCompatActivity() {
         bindListeners()
     }
 
-    fun bindListeners() {
+    private fun bindListeners() {
         btnSend.setOnClickListener {
             if (!input.text.isEmpty()) {
                 message.text = input.text.toString()
-                message.userName = "TestName"
+                message.userId = currentUser!!.uid
 
                 FirebaseDatabase.getInstance()
                         .getReference("message")
