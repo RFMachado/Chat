@@ -5,6 +5,7 @@ import com.example.rafael.chat.domain.Message
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.example.rafael.chat.R
+import com.example.rafael.chat.UserPref
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,14 +13,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var messageList = ArrayList<String>()
+    var messageList = ArrayList<Message?>()
 
-    lateinit var childEventListener: ChildEventListener
-    lateinit var mMessageReference: DatabaseReference
+    private lateinit var childEventListener: ChildEventListener
+    private lateinit var mMessageReference: DatabaseReference
     var message = Message()
-
-    private val EXTRA_USER = "user"
-    private val currentUser by lazy { intent.getParcelableExtra(EXTRA_USER) as FirebaseUser? }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +35,8 @@ class MainActivity : AppCompatActivity() {
             override fun onChildChanged(p0: DataSnapshot, p1: String?) { }
 
             override fun onChildAdded(dataSnapshot: DataSnapshot, p1: String?) {
-                val message = dataSnapshot.getValue(Message::class.java)?.text
-                messageList.add(message ?: " ")
+                val message = dataSnapshot.getValue(Message::class.java)
+                messageList.add(message)
                 recyclerView.adapter.notifyDataSetChanged()
                 recyclerView.scrollToPosition(messageList.size - 1)
             }
@@ -58,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         btnSend.setOnClickListener {
             if (!input.text.isEmpty()) {
                 message.text = input.text.toString()
-                message.userId = currentUser!!.uid
+                message.userId = UserPref(this).getString("userId") ?: ""
 
                 FirebaseDatabase.getInstance()
                         .getReference("message")

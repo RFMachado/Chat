@@ -50,11 +50,9 @@ class LoginActivity: AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             println("signInWithEmail:success")
-                            currentUser = mAuth.currentUser
+                            UserPref(this).set("userId", mAuth.currentUser?.uid)
 
-                            val intent = Intent(this, MainActivity::class.java).apply {
-                                putExtra(EXTRA_USER, currentUser)
-                            }
+                            val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
 
                         } else
