@@ -23,10 +23,6 @@ class LoginActivity: AppCompatActivity() {
     }
 
     private fun bindListeners() {
-        btnExit.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            finish()
-        }
 
         btnSignUp.setOnClickListener {
             val email = edtEmail.text.toString()

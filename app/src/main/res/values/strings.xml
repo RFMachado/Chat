@@ -4,12 +4,15 @@
     <string name="enter_message">Enter message</string>
     <string name="send">SEND</string>
 
-    <string name="login">Email</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="nick_name">NickName</string>
+    <string name="google">Sign in with Google</string>
+    <string name="twitter">Sign in with Twitter</string>
 
     <string name="signin">Sign In</string>
-    <string name="signup">Sign Up</string>
+    <string name="newAccount">Create New account</string>
     <string name="exit">Sign Out</string>
     <string name="authentication_failed">Authentication failed.</string>
 
