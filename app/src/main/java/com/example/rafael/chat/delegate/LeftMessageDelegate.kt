@@ -14,6 +14,7 @@ class LeftMessageDelegate: AbsListItemAdapterDelegate<LeftMessage, Any, LeftMess
 
         fun bind(leftMessage: LeftMessage): Unit = with(leftMessage) {
             itemView.textUser.text = text
+            itemView.nickName.text = nickName
         }
     }
 

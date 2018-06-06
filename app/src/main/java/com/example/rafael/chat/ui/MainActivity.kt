@@ -41,9 +41,9 @@ class MainActivity : AppCompatActivity() {
                 val userId = UserPref(this@MainActivity).getString("userId")
 
                 if (message?.userId.equals(userId) )
-                    items.add(RightMessage(message!!.text))
+                    items.add(RightMessage(message!!.text, message.nickName))
                 else
-                    items.add(LeftMessage(message!!.text))
+                    items.add(LeftMessage(message!!.text, message.nickName))
 
                 recyclerView.adapter.notifyDataSetChanged()
                 recyclerView.scrollToPosition(items.size - 1)
@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             if (!input.text.isEmpty()) {
                 message.text = input.text.toString()
                 message.userId = UserPref(this).getString("userId") ?: ""
+                message.nickName = UserPref(this).getString("nickName") ?: ""
 
                 FirebaseDatabase.getInstance()
                         .getReference("message")

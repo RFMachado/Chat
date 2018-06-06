@@ -6,4 +6,5 @@ package com.example.rafael.chat.domain
 class Message {
     lateinit var text: String
     lateinit var userId: String
+    lateinit var nickName: String
 }

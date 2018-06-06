@@ -11,10 +11,11 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/nickName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="User Name"
+        android:layout_marginLeft="5dp"
         android:textSize="10dp"
         android:textStyle="bold"
         />
@@ -23,6 +24,7 @@
         android:id="@+id/textUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:textSize="15dp"
         tools:text="Hi, How are you?"
         />

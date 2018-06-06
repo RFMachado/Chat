@@ -45,12 +45,14 @@ class LoginActivity: AppCompatActivity() {
         btnSignIn.setOnClickListener {
             val email = edtEmail.text.toString()
             val password = edtPassword.text.toString()
+            val nickName = edtNickName.text.toString()
 
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             println("signInWithEmail:success")
                             UserPref(this).set("userId", mAuth.currentUser?.uid)
+                            UserPref(this).set("nickName", nickName)
 
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
