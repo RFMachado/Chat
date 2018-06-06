@@ -19,7 +19,7 @@
     <LinearLayout
         android:id="@+id/layout_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal">
 
         <EditText
@@ -27,20 +27,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:background="@android:drawable/editbox_background_normal"
             android:hint="@string/enter_message" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnSend"
-            android:layout_width="60dp"
-            android:layout_height="42dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="2dp"
-            android:text="@string/send" />
+            android:scaleType="center"
+            android:src="@drawable/ic_arrow"
+            android:background="@drawable/circle" />
 
     </LinearLayout>
 
