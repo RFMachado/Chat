@@ -9,8 +9,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="30dp"
         android:text="@string/login" />
 
@@ -37,15 +36,6 @@
         android:layout_marginBottom="30dp"
         android:background="@android:drawable/editbox_background_normal"/>
 
-    <EditText
-        android:id="@+id/edtNickName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:hint="@string/nick_name"
-        android:background="@android:drawable/editbox_background_normal"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,7 +48,6 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:layout_marginRight="20dp"
             android:text="@string/signin"/>
 
         <Button
@@ -66,13 +55,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:layout_marginRight="20dp"
             android:text="@string/newAccount"/>
 
         <View android:background="@color/gray"
             android:layout_width = "match_parent"
             android:layout_height="1dp"
-            android:layout_margin="10dp"/>
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="15dp"/>
 
         <LinearLayout
             android:id="@+id/btnGoogle"
@@ -123,7 +114,7 @@
                 android:textAlignment="center"
                 android:textSize="15sp"
                 android:textColor="@color/white"
-                android:text="@string/google"
+                android:text="@string/twitter"
                 tools:text="@string/twitter"/>
 
         </LinearLayout>

@@ -6,11 +6,11 @@ import com.example.rafael.chat.R
 import com.example.rafael.chat.domain.LeftMessage
 import com.example.rafael.chat.extensions.inflate
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
-import kotlinx.android.synthetic.main.left_layout_delegate.view.*
+import kotlinx.android.synthetic.main.item_delegate_left_message.view.*
 
 class LeftMessageDelegate: AbsListItemAdapterDelegate<LeftMessage, Any, LeftMessageDelegate.ViewHolder>() {
 
-    inner class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.left_layout_delegate)) {
+    inner class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_delegate_left_message)) {
 
         fun bind(leftMessage: LeftMessage): Unit = with(leftMessage) {
             itemView.textUser.text = text

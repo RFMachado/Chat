@@ -12,6 +12,7 @@
     <string name="twitter">Sign in with Twitter</string>
 
     <string name="signin">Sign In</string>
+    <string name="next">Next</string>
     <string name="newAccount">Create New account</string>
     <string name="exit">Sign Out</string>
     <string name="authentication_failed">Authentication failed.</string>

@@ -4,9 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.rafael.chat.extensions.toast
-import com.example.rafael.chat.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.login_activity.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity: AppCompatActivity() {
 
@@ -16,7 +15,7 @@ class LoginActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_activity)
+        setContentView(R.layout.activity_login)
 
 
         bindListeners()
@@ -41,17 +40,16 @@ class LoginActivity: AppCompatActivity() {
         btnSignIn.setOnClickListener {
             val email = edtEmail.text.toString()
             val password = edtPassword.text.toString()
-            val nickName = edtNickName.text.toString()
 
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             println("signInWithEmail:success")
                             UserPref(this).set("userId", mAuth.currentUser?.uid)
-                            UserPref(this).set("nickName", nickName)
 
-                            val intent = Intent(this, MainActivity::class.java)
+                            val intent = Intent(this, NickNameActivity::class.java)
                             startActivity(intent)
+                            finish()
 
                         } else
                             toast(R.string.authentication_failed)

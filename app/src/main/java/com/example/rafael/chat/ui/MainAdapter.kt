@@ -11,7 +11,7 @@ import com.example.rafael.chat.delegate.LeftMessageDelegate
 import com.example.rafael.chat.delegate.RightMessageDelegate
 import com.example.rafael.chat.domain.Message
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
-import kotlinx.android.synthetic.main.left_layout_delegate.view.*
+import kotlinx.android.synthetic.main.item_delegate_left_message.view.*
 
 
 /**
