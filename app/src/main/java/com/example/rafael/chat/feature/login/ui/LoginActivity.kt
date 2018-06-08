@@ -1,9 +1,12 @@
-package com.example.rafael.chat
+package com.example.rafael.chat.feature.login.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.example.rafael.chat.R
 import com.example.rafael.chat.extensions.toast
+import com.example.rafael.chat.shared.Consts
+import com.example.rafael.chat.shared.UserPref
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -11,7 +14,6 @@ class LoginActivity: AppCompatActivity() {
 
     private val mAuth = FirebaseAuth.getInstance()
     private var currentUser = mAuth.currentUser
-    private val EXTRA_USER = "user"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +47,7 @@ class LoginActivity: AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             println("signInWithEmail:success")
-                            UserPref(this).set("userId", mAuth.currentUser?.uid)
+                            UserPref(this).set(Consts.USER_ID, mAuth.currentUser?.uid)
 
                             val intent = Intent(this, NickNameActivity::class.java)
                             startActivity(intent)

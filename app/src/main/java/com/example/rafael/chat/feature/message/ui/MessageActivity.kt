@@ -1,25 +1,29 @@
-package com.example.rafael.chat.ui
+package com.example.rafael.chat.feature.message.ui
 
 import android.os.Bundle
-import com.example.rafael.chat.domain.Message
+import com.example.rafael.chat.feature.message.Infrastructure.MessagePayload
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.example.rafael.chat.R
-import com.example.rafael.chat.UserPref
-import com.example.rafael.chat.domain.LeftMessage
-import com.example.rafael.chat.domain.RightMessage
-import com.google.firebase.auth.FirebaseUser
+import com.example.rafael.chat.shared.UserPref
+import com.example.rafael.chat.feature.message.domain.LeftMessage
+import com.example.rafael.chat.feature.message.domain.RightMessage
+import com.example.rafael.chat.shared.Consts
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class MessageActivity : AppCompatActivity() {
 
     var items = ArrayList<Any>()
 
     private lateinit var childEventListener: ChildEventListener
     private lateinit var mMessageReference: DatabaseReference
-    var message = Message()
+    var message = MessagePayload()
+
+    companion object {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +41,10 @@ class MainActivity : AppCompatActivity() {
             override fun onChildChanged(p0: DataSnapshot, p1: String?) { }
 
             override fun onChildAdded(dataSnapshot: DataSnapshot, p1: String?) {
-                val message = dataSnapshot.getValue(Message::class.java)
-                val userId = UserPref(this@MainActivity).getString("userId")
+                val message = dataSnapshot.getValue(MessagePayload::class.java)
+                val userId = UserPref(this@MessageActivity).getString(Consts.USER_ID)
 
-                if (message?.userId.equals(userId) )
+                if (message?.userId == userId)
                     items.add(RightMessage(message!!.text, message.nickName))
                 else
                     items.add(LeftMessage(message!!.text, message.nickName))
@@ -55,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         mMessageReference.addChildEventListener(childEventListener)
 
-        recyclerView.adapter = MainAdapter(items)
+        recyclerView.adapter = MessageAdapter(items)
 
         bindListeners()
     }
@@ -64,8 +68,8 @@ class MainActivity : AppCompatActivity() {
         btnSend.setOnClickListener {
             if (!input.text.isEmpty()) {
                 message.text = input.text.toString()
-                message.userId = UserPref(this).getString("userId") ?: ""
-                message.nickName = UserPref(this).getString("nickName") ?: ""
+                message.userId = UserPref(this).getString(Consts.USER_ID) ?: ""
+                message.nickName = UserPref(this).getString(Consts.USER_NICKNAME) ?: ""
 
                 FirebaseDatabase.getInstance()
                         .getReference("message")

@@ -1,9 +1,9 @@
-package com.example.rafael.chat.delegate
+package com.example.rafael.chat.feature.message.ui.delegate
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.example.rafael.chat.R
-import com.example.rafael.chat.domain.RightMessage
+import com.example.rafael.chat.feature.message.domain.RightMessage
 import com.example.rafael.chat.extensions.inflate
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import kotlinx.android.synthetic.main.item_delegate_right_message.view.*
