@@ -8,14 +8,14 @@ import com.example.rafael.chat.dagger.module.AppModule
 class MyApplication: Application() {
 
     companion object {
-        lateinit var netComponent: NetComponent
+        lateinit var coreComponent: NetComponent
     }
 
 
     override fun onCreate() {
         super.onCreate()
 
-        netComponent = DaggerNetComponent.builder()
+        coreComponent = DaggerNetComponent.builder()
                 .appModule(AppModule(this))
                 .build()
     }

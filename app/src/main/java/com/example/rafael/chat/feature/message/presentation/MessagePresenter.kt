@@ -6,5 +6,8 @@ package com.example.rafael.chat.feature.message.presentation
  */
 class MessagePresenter() {
 
+    fun fetchMessage() {
+
+    }
 
 }
