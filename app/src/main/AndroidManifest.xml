@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.rafael.chat.feature.login.ui.NickNameActivity" />
+        <activity android:name="com.example.rafael.chat.feature.nickname.ui.NickNameActivity" />
 
     </application>
 
