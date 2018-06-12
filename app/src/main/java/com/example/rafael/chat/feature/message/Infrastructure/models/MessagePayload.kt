@@ -1,4 +1,4 @@
-package com.example.rafael.chat.feature.message.Infrastructure
+package com.example.rafael.chat.feature.message.Infrastructure.models
 
 /**
  * Created by Rafael on 21/02/2018.
