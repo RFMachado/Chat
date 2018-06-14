@@ -16,5 +16,6 @@
     <string name="newAccount">Create New account</string>
     <string name="exit">Sign Out</string>
     <string name="authentication_failed">Authentication failed.</string>
+    <string name="authentication_failed_google">Google sign in failed.</string>
 
 </resources>
