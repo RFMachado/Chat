@@ -116,6 +116,11 @@ class LoginActivity: AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         println("signInWithCredential:success")
+                        presenter.setPreference(mAuth.currentUser?.uid)
+
+                        val intent = Intent(this, NickNameActivity::class.java)
+                        startActivity(intent)
+                        finish()
 
                     } else {
                         println("signInWithCredential:failure")
