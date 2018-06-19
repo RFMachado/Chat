@@ -74,7 +74,6 @@ class LoginActivity: AppCompatActivity() {
 
                             val intent = Intent(this, NickNameActivity::class.java)
                             startActivity(intent)
-                            finish()
 
                         } else
                             toast(R.string.authentication_failed)
@@ -120,7 +119,6 @@ class LoginActivity: AppCompatActivity() {
 
                         val intent = Intent(this, NickNameActivity::class.java)
                         startActivity(intent)
-                        finish()
 
                     } else {
                         println("signInWithCredential:failure")
