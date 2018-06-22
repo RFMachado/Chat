@@ -1,12 +1,16 @@
 package com.example.rafael.chat.feature.message.ui
 
 import android.os.Bundle
+import android.support.design.widget.NavigationView
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.example.rafael.chat.MyApplication
 import com.example.rafael.chat.R
+import com.example.rafael.chat.extensions.toast
 import com.example.rafael.chat.feature.message.domain.entities.Message
 import com.example.rafael.chat.feature.message.presentation.MessagePresenter
 import com.example.rafael.chat.feature.message.presentation.MessageView
@@ -15,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
-class MessageActivity : AppCompatActivity(), MessageView {
+class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavigationItemSelectedListener {
 
     var items = ArrayList<Any>()
 
@@ -33,6 +37,8 @@ class MessageActivity : AppCompatActivity(), MessageView {
         setSupportActionBar(toolbar)
         MyApplication.coreComponent.inject(this)
         presenter.bind(this)
+
+        navigationBar()
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = MessageAdapter(items)
@@ -58,6 +64,36 @@ class MessageActivity : AppCompatActivity(), MessageView {
             else -> super.onOptionsItemSelected(item)
         }
 
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.log_out -> {
+                toast(R.string.navigation_drawer_close)
+            }
+
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    fun navigationBar() {
+
+        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        navigationView.setNavigationItemSelectedListener(this)
     }
 
     fun logout() {
