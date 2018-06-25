@@ -4,6 +4,8 @@ import com.example.rafael.chat.feature.message.Infrastructure.mapper.MessageMapp
 import com.example.rafael.chat.feature.message.Infrastructure.models.MessagePayload
 import com.example.rafael.chat.feature.message.domain.MessageSource
 import com.example.rafael.chat.feature.message.domain.entities.Message
+import com.example.rafael.chat.shared.Consts
+import com.example.rafael.chat.shared.UserPref
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -11,10 +13,12 @@ import com.google.firebase.database.FirebaseDatabase
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class MessageInfrastructure @Inject constructor(): MessageSource {
-    private val mMessageReference = FirebaseDatabase.getInstance().getReference("message")
+class MessageInfrastructure @Inject constructor(private val userPref: UserPref): MessageSource {
 
     override fun fetchMessage(): Observable<Message> {
+        val channel = userPref.getString(Consts.CHANNEL) ?: "message"
+        val mMessageReference = FirebaseDatabase.getInstance().getReference(channel)
+
         return Observable.create { emitter ->
 
             val childEventListener = object : ChildEventListener {

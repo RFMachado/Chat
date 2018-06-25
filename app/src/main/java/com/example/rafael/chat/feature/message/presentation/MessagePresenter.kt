@@ -16,12 +16,12 @@ import javax.inject.Inject
  */
 class MessagePresenter @Inject constructor(private val source: MessageSource, private val userPref: UserPref): ReactivePresenter<MessageView>() {
 
-    fun fetchMessageData() {
+    private fun fetchMessageData() {
         val myId = userPref.getString(Consts.USER_ID)
 
         disposables += source.fetchMessage()
                 .compose(RxUtils.applySchedulers())
-                .doOnSubscribe { }
+                .doOnSubscribe { view?.removeAllItems() }
                 .subscribe (
                         { message ->
                             message.isMyUser = myId == message.userId
@@ -35,15 +35,23 @@ class MessagePresenter @Inject constructor(private val source: MessageSource, pr
 
     fun sendMessage(input: String) {
         val message = MessagePayload()
+        val channel = userPref.getString(Consts.CHANNEL) ?: "message"
 
         message.text = input
         message.userId = userPref.getString(Consts.USER_ID) ?: ""
         message.nickName = userPref.getString(Consts.USER_NICKNAME) ?: ""
 
         FirebaseDatabase.getInstance()
-                .getReference("message")
+                .getReference(channel)
                 .push()
                 .setValue(message)
+    }
+
+    fun changeChannel(channel: String?) {
+        userPref.set(Consts.CHANNEL, channel)
+
+        disposables.clear()
+        fetchMessageData()
     }
 
 }

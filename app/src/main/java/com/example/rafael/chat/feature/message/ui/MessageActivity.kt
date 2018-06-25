@@ -11,7 +11,6 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.rafael.chat.MyApplication
 import com.example.rafael.chat.R
-import com.example.rafael.chat.extensions.toast
 import com.example.rafael.chat.feature.login.ui.LoginActivity
 import com.example.rafael.chat.feature.message.domain.entities.Message
 import com.example.rafael.chat.feature.message.presentation.MessagePresenter
@@ -40,7 +39,7 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = MessageAdapter(items)
 
-        presenter.fetchMessageData()
+        presenter.changeChannel("message")
 
         bindListeners()
     }
@@ -66,15 +65,25 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.channel_one -> {
+                presenter.changeChannel(getString(R.string.channel_one))
 
             }
             R.id.channel_two -> {
-
+                presenter.changeChannel(getString(R.string.channel_two))
             }
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun removeAllItems() {
+        items.mapIndexed { index, item -> Pair(index, item) }
+                .asReversed()
+                .forEach { (index) ->
+                    items.removeAt(index)
+                    recyclerView.adapter.notifyItemRemoved(index)
+                }
     }
 
     override fun onBackPressed() {
@@ -115,9 +124,8 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
     private fun bindListeners() {
         btnSend.setOnClickListener {
-            if (!input.text.isEmpty()) {
+            if (!input.text.isEmpty())
                 presenter.sendMessage(input.text.toString())
-            }
 
             input.text.clear()
         }
