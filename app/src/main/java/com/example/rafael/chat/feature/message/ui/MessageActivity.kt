@@ -65,8 +65,11 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.log_out -> {
-                toast(R.string.navigation_drawer_close)
+            R.id.channel_one -> {
+
+            }
+            R.id.channel_two -> {
+
             }
         }
 

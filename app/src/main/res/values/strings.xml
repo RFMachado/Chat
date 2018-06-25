@@ -19,5 +19,8 @@
     <string name="authentication_failed_google">Google sign in failed.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="channel">Channels</string>
+    <string name="channel_one">Channel 1</string>
+    <string name="channel_two">Channel 2</string>
 
 </resources>

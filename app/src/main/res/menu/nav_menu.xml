@@ -3,26 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:title="Send" />
-        </menu>
-    </item>
-
-    <item android:title="Channel">
+    <item android:title="@string/channel">
         <menu>
             <item
                 android:id="@+id/channel_one"
-                android:title="Channel 1" />
+                android:title="@string/channel_one" />
             <item
                 android:id="@+id/channel_two"
-                android:title="Channel 2" />
+                android:title="@string/channel_two" />
         </menu>
     </item>
-
 </menu>
