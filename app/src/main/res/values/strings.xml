@@ -22,5 +22,6 @@
     <string name="channel">Channels</string>
     <string name="channel_one">Channel 1</string>
     <string name="channel_two">Channel 2</string>
+    <string name="error_validation_nickname">Invalid Nickname</string>
 
 </resources>

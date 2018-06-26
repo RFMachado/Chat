@@ -5,9 +5,11 @@
     <color name="colorAccent">#1C4AFF</color>
 
     <color name="colorGoogle">#3283FC</color>
+    <color name="colorGoogle2">#94bfff</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray">#F1F0F0</color>
     <color name="blue">#55ACEE</color>
+    <color name="red">#FF0000</color>
 </resources>
