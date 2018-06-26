@@ -1,5 +1,6 @@
 package com.example.rafael.chat.feature.message.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -15,6 +16,7 @@ import com.example.rafael.chat.feature.login.ui.LoginActivity
 import com.example.rafael.chat.feature.message.domain.entities.Message
 import com.example.rafael.chat.feature.message.presentation.MessagePresenter
 import com.example.rafael.chat.feature.message.presentation.MessageView
+import com.example.rafael.chat.feature.nickname.ui.NickNameActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -26,6 +28,10 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
     @Inject
     lateinit var presenter: MessagePresenter
+
+    companion object {
+        fun launchIntent(context: Context) = Intent(context, MessageActivity::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +45,9 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = MessageAdapter(items)
 
-        presenter.changeChannel("message")
+        val channel = presenter.getPreference()
+
+        presenter.changeChannel(channel)
 
         bindListeners()
     }
@@ -55,6 +63,10 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
             R.id.log_out -> {
                 logout()
+                true
+            }
+            R.id.change_nick -> {
+                changeNick()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -108,6 +120,12 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
 
+        finish()
+    }
+
+    private fun changeNick() {
+        val intent = NickNameActivity.launchIntent(this)
+        startActivity(intent)
         finish()
     }
 

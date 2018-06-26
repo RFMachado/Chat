@@ -1,5 +1,6 @@
 package com.example.rafael.chat.feature.nickname.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TextInputEditText
@@ -27,8 +28,12 @@ class NickNameActivity: AppCompatActivity(), Validator.ValidationListener {
 
     @Order(1)
     @NotEmpty
-    @Password(min = 2, scheme = Password.Scheme.ALPHA, messageResId = R.string.error_validation_nickname)
+    @Password(min = 3, scheme = Password.Scheme.ALPHA, messageResId = R.string.error_validation_nickname)
     lateinit var edtNick: TextInputEditText
+
+    companion object {
+        fun launchIntent(context: Context) = Intent(context, NickNameActivity::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +51,7 @@ class NickNameActivity: AppCompatActivity(), Validator.ValidationListener {
             val nickName = edtNickName.text.toString()
             presenter.setPreference(nickName)
 
-            val intent = Intent(this, MessageActivity::class.java)
+            val intent = MessageActivity.launchIntent(this)
             startActivity(intent)
             finish()
         }
@@ -55,9 +60,9 @@ class NickNameActivity: AppCompatActivity(), Validator.ValidationListener {
             afterTextChanged {
                 validator.validateTill(edtNick)
 
-                if (edtNickName.text.isEmpty()) {
+                if (edtNickName.text.isEmpty())
                     edtNickName.setColorError(null)
-                }
+
             }
         }
     }

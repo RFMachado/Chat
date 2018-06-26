@@ -54,4 +54,6 @@ class MessagePresenter @Inject constructor(private val source: MessageSource, pr
         fetchMessageData()
     }
 
+    fun getPreference() = userPref.getString(Consts.CHANNEL)
+
 }
