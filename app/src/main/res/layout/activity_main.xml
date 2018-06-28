@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:titleTextColor="@color/white"
-            app:title="@string/app_name"
             app:menu="@menu/settings_menu"
             app:theme="@style/ToolbarTheme">
         </android.support.v7.widget.Toolbar>

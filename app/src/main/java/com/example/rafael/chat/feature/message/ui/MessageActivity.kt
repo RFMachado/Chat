@@ -43,11 +43,13 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
         navigationBar()
 
         recyclerView.layoutManager = LinearLayoutManager(this)
+        (recyclerView.layoutManager as LinearLayoutManager).stackFromEnd = true
         recyclerView.adapter = MessageAdapter(items)
 
         val channel = presenter.getPreference()
 
         presenter.changeChannel(channel)
+        supportActionBar?.title = channel
 
         bindListeners()
     }
@@ -77,11 +79,16 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.channel_one -> {
-                presenter.changeChannel(getString(R.string.channel_one))
+                val channelName = getString(R.string.channel_one)
 
+                presenter.changeChannel(channelName)
+                toolbar.title = channelName
             }
             R.id.channel_two -> {
-                presenter.changeChannel(getString(R.string.channel_two))
+                val channelName = getString(R.string.channel_two)
+
+                presenter.changeChannel(channelName)
+                toolbar.title = channelName
             }
         }
 
