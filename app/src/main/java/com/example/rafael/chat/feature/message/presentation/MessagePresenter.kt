@@ -35,14 +35,14 @@ class MessagePresenter @Inject constructor(private val source: MessageSource, pr
 
     fun sendMessage(input: String) {
         val message = MessagePayload()
-        val channel = userPref.getString(Consts.CHANNEL) ?: "message"
+        val channelName = userPref.getString(Consts.CHANNEL) ?: "message"
 
         message.text = input
         message.userId = userPref.getString(Consts.USER_ID) ?: ""
         message.nickName = userPref.getString(Consts.USER_NICKNAME) ?: ""
 
         FirebaseDatabase.getInstance()
-                .getReference(channel)
+                .getReference(Consts.CHANNEL).child(channelName)
                 .push()
                 .setValue(message)
     }
