@@ -47,6 +47,8 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, Priv
 
         bindListeners()
 
+        presenter.fetchMessage(message.userId)
+
     }
 
     private fun bindListeners() {
@@ -55,17 +57,18 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, Priv
         }
 
         btnSend.setOnClickListener {
-            val myUserid = presenter.getPreferenceId()
-
             if (!input.text.isEmpty())
-                presenter.sendMessage(input.text.toString(), myUserid, message.userId)
+                presenter.sendMessage(input.text.toString(), message.userId)
 
             input.text.clear()
         }
     }
 
     override fun showMessage(message: Message) {
+        items.add(message)
 
+        recyclerView.adapter.notifyItemInserted(items.size-1)
+        recyclerView.layoutManager.scrollToPosition(items.size - 1)
     }
 
     override fun showError() {
@@ -73,7 +76,12 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, Priv
     }
 
     override fun removeAllItems() {
-
+        items.mapIndexed { index, item -> Pair(index, item) }
+                .asReversed()
+                .forEach { (index) ->
+                    items.removeAt(index)
+                    recyclerView.adapter.notifyItemRemoved(index)
+                }
     }
 
     override fun onClickMessage(leftMessage: Message) {

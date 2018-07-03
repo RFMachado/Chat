@@ -14,7 +14,7 @@
     <string name="signin">Sign In</string>
     <string name="next">Next</string>
     <string name="newAccount">Create New account</string>
-    <string name="sign_out">Sign Out</string>
+    <string name="sign_out">Log out</string>
     <string name="change_nick">Change Nickname</string>
     <string name="authentication_failed">Authentication failed.</string>
     <string name="authentication_failed_google">Google sign in failed.</string>
