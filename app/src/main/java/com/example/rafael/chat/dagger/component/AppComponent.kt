@@ -5,6 +5,7 @@ import com.example.rafael.chat.dagger.module.MessageModule
 import com.example.rafael.chat.feature.login.ui.LoginActivity
 import com.example.rafael.chat.feature.message.ui.MessageActivity
 import com.example.rafael.chat.feature.nickname.ui.NickNameActivity
+import com.example.rafael.chat.feature.privatemessage.ui.PrivateMessageActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -15,4 +16,5 @@ interface AppComponent {
     fun inject(activity: MessageActivity)
     fun inject(activity: LoginActivity)
     fun inject(activity: NickNameActivity)
+    fun inject(activity: PrivateMessageActivity)
 }

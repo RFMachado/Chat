@@ -19,6 +19,7 @@ import com.example.rafael.chat.feature.message.presentation.MessagePresenter
 import com.example.rafael.chat.feature.message.presentation.MessageView
 import com.example.rafael.chat.feature.nickname.ui.NickNameActivity
 import com.example.rafael.chat.feature.privatemessage.ui.PrivateMessageActivity
+import com.example.rafael.chat.shared.Consts
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject

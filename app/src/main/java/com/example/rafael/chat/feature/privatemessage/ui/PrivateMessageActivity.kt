@@ -5,16 +5,23 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.example.rafael.chat.MyApplication
 import com.example.rafael.chat.R
 import com.example.rafael.chat.feature.message.domain.entities.Message
 import com.example.rafael.chat.feature.message.ui.MessageAdapter
+import com.example.rafael.chat.feature.privatemessage.presentation.PrivateMessagePresenter
+import com.example.rafael.chat.feature.privatemessage.presentation.PrivateMessageView
 import kotlinx.android.synthetic.main.activity_private_message.*
+import javax.inject.Inject
 
 
-class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener {
+class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, PrivateMessageView {
 
-    private val message by lazy { intent.getParcelableExtra(EXTRA_MESSAGE) as Message? }
+    private val message by lazy { intent.getParcelableExtra(EXTRA_MESSAGE) as Message }
     private var items = ArrayList<Any>()
+
+    @Inject
+    lateinit var presenter: PrivateMessagePresenter
 
     companion object {
         const val EXTRA_MESSAGE = "message"
@@ -30,11 +37,13 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_private_message)
+        MyApplication.coreComponent.inject(this)
+        presenter.bind(this)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = MessageAdapter(items, this)
 
-        toolbar.title = message?.nickName
+        toolbar.title = message.nickName
 
         bindListeners()
 
@@ -44,10 +53,36 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener {
         arrow.setOnClickListener {
             onBackPressed()
         }
+
+        btnSend.setOnClickListener {
+            val myUserid = presenter.getPreferenceId()
+
+            if (!input.text.isEmpty())
+                presenter.sendMessage(input.text.toString(), myUserid, message.userId)
+
+            input.text.clear()
+        }
+    }
+
+    override fun showMessage(message: Message) {
+
+    }
+
+    override fun showError() {
+
+    }
+
+    override fun removeAllItems() {
+
     }
 
     override fun onClickMessage(leftMessage: Message) {
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unbind()
     }
 
 }
