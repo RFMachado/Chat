@@ -24,6 +24,7 @@
         </activity>
 
         <activity android:name="com.example.rafael.chat.feature.nickname.ui.NickNameActivity" />
+        <activity android:name=".feature.privatemessage.ui.PrivateMessageActivity"/>
 
     </application>
 

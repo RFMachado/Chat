@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -17,12 +18,13 @@ import com.example.rafael.chat.feature.message.domain.entities.Message
 import com.example.rafael.chat.feature.message.presentation.MessagePresenter
 import com.example.rafael.chat.feature.message.presentation.MessageView
 import com.example.rafael.chat.feature.nickname.ui.NickNameActivity
+import com.example.rafael.chat.feature.privatemessage.ui.PrivateMessageActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
-class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavigationItemSelectedListener {
+class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavigationItemSelectedListener, MessageAdapter.Listener {
 
     var items = ArrayList<Any>()
 
@@ -44,7 +46,7 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         (recyclerView.layoutManager as LinearLayoutManager).stackFromEnd = true
-        recyclerView.adapter = MessageAdapter(items)
+        recyclerView.adapter = MessageAdapter(items, this)
 
         val channel = presenter.getPreference()
 
@@ -145,6 +147,11 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
     override fun showError() {
 
+    }
+
+    override fun onClickMessage(leftMessage: Message) {
+        val intent = PrivateMessageActivity.launchIntent(this, leftMessage)
+        startActivity(intent)
     }
 
     private fun bindListeners() {

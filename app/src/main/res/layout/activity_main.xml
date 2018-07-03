@@ -19,6 +19,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:text="@string/app_name"
+            android:textSize="20sp"
             app:titleTextColor="@color/white"
             app:menu="@menu/settings_menu"
             app:theme="@style/ToolbarTheme">
