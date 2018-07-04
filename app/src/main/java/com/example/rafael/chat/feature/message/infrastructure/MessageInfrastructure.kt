@@ -1,7 +1,7 @@
-package com.example.rafael.chat.feature.message.Infrastructure
+package com.example.rafael.chat.feature.message.infrastructure
 
-import com.example.rafael.chat.feature.message.Infrastructure.mapper.MessageMapper
-import com.example.rafael.chat.feature.message.Infrastructure.models.MessagePayload
+import com.example.rafael.chat.feature.message.infrastructure.mapper.MessageMapper
+import com.example.rafael.chat.feature.message.infrastructure.models.MessagePayload
 import com.example.rafael.chat.feature.message.domain.MessageSource
 import com.example.rafael.chat.feature.message.domain.entities.Message
 import com.example.rafael.chat.shared.Consts
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class MessageInfrastructure @Inject constructor(private val userPref: UserPref): MessageSource {
 
     override fun fetchMessage(): Observable<Message> {
-        val channelName = userPref.getString(Consts.CHANNEL) ?: "message"
+        val channelName = userPref.getString(Consts.CHANNEL) ?: "Channel 1"
         val mMessageReference = FirebaseDatabase.getInstance().getReference(Consts.CHANNEL).child(channelName)
 
         return Observable.create { emitter ->

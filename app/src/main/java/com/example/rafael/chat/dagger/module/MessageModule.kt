@@ -1,6 +1,6 @@
 package com.example.rafael.chat.dagger.module
 
-import com.example.rafael.chat.feature.message.Infrastructure.MessageInfrastructure
+import com.example.rafael.chat.feature.message.infrastructure.MessageInfrastructure
 import com.example.rafael.chat.feature.message.domain.MessageSource
 import com.example.rafael.chat.feature.privatemessage.domain.MessagePrivateSource
 import com.example.rafael.chat.feature.privatemessage.infrastructure.MessagePrivateInfrastructure

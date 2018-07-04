@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:name=".MyApplication"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.rafael.chat.feature.message.ui.MessageActivity" />
+        <activity android:name=".feature.message.ui.MessageActivity" />
 
         <activity android:name=".feature.login.ui.LoginActivity">
             <intent-filter>
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.rafael.chat.feature.nickname.ui.NickNameActivity" />
+        <activity android:name=".feature.nickname.ui.NickNameActivity" />
         <activity android:name=".feature.privatemessage.ui.PrivateMessageActivity"/>
 
     </application>

@@ -1,6 +1,6 @@
 package com.example.rafael.chat.feature.message.presentation
 
-import com.example.rafael.chat.feature.message.Infrastructure.models.MessagePayload
+import com.example.rafael.chat.feature.message.infrastructure.models.MessagePayload
 import com.example.rafael.chat.feature.message.domain.MessageSource
 import com.example.rafael.chat.shared.Consts
 import com.example.rafael.chat.shared.ReactivePresenter

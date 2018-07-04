@@ -1,6 +1,6 @@
-package com.example.rafael.chat.feature.message.Infrastructure.mapper
+package com.example.rafael.chat.feature.message.infrastructure.mapper
 
-import com.example.rafael.chat.feature.message.Infrastructure.models.MessagePayload
+import com.example.rafael.chat.feature.message.infrastructure.models.MessagePayload
 import com.example.rafael.chat.feature.message.domain.entities.Message
 
 /**

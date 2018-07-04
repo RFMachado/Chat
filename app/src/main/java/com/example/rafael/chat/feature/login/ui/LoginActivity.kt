@@ -12,6 +12,8 @@ import com.example.rafael.chat.extensions.toast
 import com.example.rafael.chat.feature.login.presentation.LoginPresenter
 import com.example.rafael.chat.feature.message.ui.MessageActivity
 import com.example.rafael.chat.feature.nickname.ui.NickNameActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -56,6 +58,11 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         MyApplication.coreComponent.inject(this)
+
+        MobileAds.initialize(this, getString(R.string.id_app))
+
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         editEmail = edtEmail
         editPassword = edtPassword
