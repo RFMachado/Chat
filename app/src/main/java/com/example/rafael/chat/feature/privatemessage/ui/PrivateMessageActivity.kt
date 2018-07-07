@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.example.rafael.chat.MyApplication
 import com.example.rafael.chat.R
+import com.example.rafael.chat.extensions.toast
 import com.example.rafael.chat.feature.message.domain.entities.Message
 import com.example.rafael.chat.feature.message.ui.MessageAdapter
 import com.example.rafael.chat.feature.privatemessage.presentation.PrivateMessagePresenter
@@ -72,7 +73,7 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, Priv
     }
 
     override fun showError() {
-
+        toast(R.string.error_validation_nickname)
     }
 
     override fun removeAllItems() {
