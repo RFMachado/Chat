@@ -28,6 +28,7 @@ import javax.inject.Inject
 class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavigationItemSelectedListener, MessageAdapter.Listener {
 
     var items = ArrayList<Any>()
+    var channel = ""
 
     @Inject
     lateinit var presenter: MessagePresenter
@@ -49,7 +50,11 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
         (recyclerView.layoutManager as LinearLayoutManager).stackFromEnd = true
         recyclerView.adapter = MessageAdapter(items, this)
 
-        val channel = presenter.getPreference()
+      channel = if(presenter.getPreference() == "")
+          "Channel 1"
+        else
+          presenter.getPreference()
+
 
         presenter.changeChannel(channel)
         supportActionBar?.title = channel
