@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "990988495064-8cs730qmjoo5us7mq8vm9u2v034197mm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rafael.chat",
+            "certificate_hash": "6718091059b3340ec5b7ad247ee0e3c2f293e9a6"
+          }
+        },
+        {
           "client_id": "990988495064-4dahimq3ne8pvhpaanbq4p0i3t464onm.apps.googleusercontent.com",
           "client_type": 3
         }

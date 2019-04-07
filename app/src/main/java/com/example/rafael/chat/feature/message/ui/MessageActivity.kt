@@ -20,6 +20,8 @@ import com.example.rafael.chat.feature.message.presentation.MessageView
 import com.example.rafael.chat.feature.nickname.ui.NickNameActivity
 import com.example.rafael.chat.feature.privatemessage.ui.PrivateMessageActivity
 import com.example.rafael.chat.shared.Consts
+import com.example.rafael.chat.shared.extensions.hide
+import com.example.rafael.chat.shared.extensions.show
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -111,6 +113,9 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
                     items.removeAt(index)
                     recyclerView.adapter.notifyItemRemoved(index)
                 }
+
+        loading.show()
+
     }
 
     override fun onBackPressed() {
@@ -149,6 +154,8 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
         recyclerView.adapter.notifyItemInserted(items.size-1)
         recyclerView.layoutManager.scrollToPosition(items.size - 1)
+
+        loading.hide()
     }
 
     override fun showError() {
