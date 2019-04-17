@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -13,17 +12,18 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.rafael.chat.MyApplication
 import com.example.rafael.chat.R
+import com.example.rafael.chat.extensions.toast
 import com.example.rafael.chat.feature.login.ui.LoginActivity
 import com.example.rafael.chat.feature.message.domain.entities.Message
 import com.example.rafael.chat.feature.message.presentation.MessagePresenter
 import com.example.rafael.chat.feature.message.presentation.MessageView
 import com.example.rafael.chat.feature.nickname.ui.NickNameActivity
 import com.example.rafael.chat.feature.privatemessage.ui.PrivateMessageActivity
-import com.example.rafael.chat.shared.Consts
 import com.example.rafael.chat.shared.extensions.hide
 import com.example.rafael.chat.shared.extensions.show
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -53,7 +53,7 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
         recyclerView.adapter = MessageAdapter(items, this)
 
       channel = if(presenter.getPreference() == "")
-          "Channel 1"
+          "Global 1"
         else
           presenter.getPreference()
 
@@ -158,8 +158,9 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
         loading.hide()
     }
 
-    override fun showError() {
-
+    override fun showError(throwable: Throwable) {
+        Timber.e(throwable)
+        toast(R.string.error_generic)
     }
 
     override fun onClickMessage(leftMessage: Message) {

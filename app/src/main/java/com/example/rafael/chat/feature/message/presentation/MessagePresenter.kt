@@ -29,7 +29,7 @@ class MessagePresenter @Inject constructor(private val source: MessageSource, pr
                             view?.showMessage(message)
 
                         },
-                        { view?.showError() }
+                        { view?.showError(it) }
                 )
     }
 
