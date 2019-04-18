@@ -1,5 +1,6 @@
 package com.example.rafael.chat.feature.login.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TextInputEditText
@@ -26,13 +27,15 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty
 import com.mobsandgeeks.saripaar.annotation.Order
 import com.mobsandgeeks.saripaar.annotation.Password
 import kotlinx.android.synthetic.main.activity_login.*
+import timber.log.Timber
 import javax.inject.Inject
+import com.google.firebase.auth.FirebaseUser
 
 
 class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
 
     private val mAuth = FirebaseAuth.getInstance()
-    private var currentUser = mAuth.currentUser
+    private var currentUser: FirebaseUser? = null
     private lateinit var validator: Validator
 
     @Inject
@@ -51,6 +54,15 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
     val RC_SIGN_IN = 9001
 
     lateinit var mGoogleSignInClient: GoogleSignInClient
+
+    companion object {
+        fun launchIntent(context: Context) = Intent(context, LoginActivity::class.java)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        currentUser = mAuth.currentUser
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -154,9 +166,13 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
 
             try {
                 val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account)
+
+                account?.let { acc ->
+                    firebaseAuthWithGoogle(acc)
+                }
 
             } catch (e: ApiException) {
+                Timber.e(e)
                 toast(R.string.authentication_failed_google)
             }
         }

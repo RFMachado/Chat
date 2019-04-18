@@ -170,7 +170,7 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
     private fun bindListeners() {
         btnSend.setOnClickListener {
-            if (!input.text.isEmpty())
+            if (input.text.isNotEmpty())
                 presenter.sendMessage(input.text.toString())
 
             input.text.clear()
