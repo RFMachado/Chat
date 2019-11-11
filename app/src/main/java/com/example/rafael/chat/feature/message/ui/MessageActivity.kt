@@ -3,11 +3,11 @@ package com.example.rafael.chat.feature.message.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import com.google.android.material.navigation.NavigationView
+import androidx.core.view.GravityCompat
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.example.rafael.chat.MyApplication
@@ -48,8 +48,8 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
         navigationBar()
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        (recyclerView.layoutManager as LinearLayoutManager).stackFromEnd = true
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        (recyclerView.layoutManager as androidx.recyclerview.widget.LinearLayoutManager).stackFromEnd = true
         recyclerView.adapter = MessageAdapter(items, this)
 
       channel = if(presenter.getPreference() == "")
@@ -111,7 +111,7 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
                 .asReversed()
                 .forEach { (index) ->
                     items.removeAt(index)
-                    recyclerView.adapter.notifyItemRemoved(index)
+                    recyclerView.adapter?.notifyItemRemoved(index)
                 }
 
         loading.show()
@@ -152,8 +152,8 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
     override fun showMessage(message: Message) {
         items.add(message)
 
-        recyclerView.adapter.notifyItemInserted(items.size-1)
-        recyclerView.layoutManager.scrollToPosition(items.size - 1)
+        recyclerView.adapter?.notifyItemInserted(items.size-1)
+        recyclerView.layoutManager?.scrollToPosition(items.size - 1)
 
         loading.hide()
     }

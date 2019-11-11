@@ -3,8 +3,8 @@ package com.example.rafael.chat.feature.login.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TextInputEditText
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
+import androidx.appcompat.app.AppCompatActivity
 import com.example.rafael.chat.MyApplication
 import com.example.rafael.chat.R
 import com.example.rafael.chat.extensions.setColorError
@@ -93,7 +93,7 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
             afterTextChanged {
                 validator.validateTill(editEmail)
 
-                if (edtEmail.text.isEmpty())
+                if (edtEmail.text.isNullOrEmpty())
                     edtEmail.setColorError(null)
             }
         }
@@ -102,7 +102,7 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
             afterTextChanged {
                 validator.validateTill(editPassword)
 
-                if (edtPassword.text.isEmpty())
+                if (edtPassword.text.isNullOrEmpty())
                     edtPassword.setColorError(null)
             }
         }
@@ -114,7 +114,7 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
 
             validator.validate()
 
-            if (!edtEmail.text.isEmpty() && !edtPassword.text.isEmpty())
+            if (!edtEmail.text.isNullOrEmpty() && !edtPassword.text.isNullOrEmpty())
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
@@ -131,7 +131,7 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
 
             validator.validate()
 
-            if (!edtEmail.text.isEmpty() && !edtPassword.text.isEmpty())
+            if (!edtEmail.text.isNullOrEmpty() && !edtPassword.text.isNullOrEmpty())
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
@@ -158,7 +158,7 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == RC_SIGN_IN) {
@@ -176,6 +176,7 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
                 toast(R.string.authentication_failed_google)
             }
         }
+
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {

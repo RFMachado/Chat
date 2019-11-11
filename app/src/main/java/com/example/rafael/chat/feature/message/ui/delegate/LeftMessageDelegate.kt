@@ -1,6 +1,6 @@
 package com.example.rafael.chat.feature.message.ui.delegate
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import com.example.rafael.chat.R
 import com.example.rafael.chat.extensions.inflate
@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_delegate_left_message.view.*
 
 class LeftMessageDelegate constructor(private val listener: MessageAdapter.Listener): AbsListItemAdapterDelegate<Message, Any, LeftMessageDelegate.ViewHolder>() {
 
-    inner class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_delegate_left_message)) {
+    inner class ViewHolder(parent: ViewGroup) : androidx.recyclerview.widget.RecyclerView.ViewHolder(parent.inflate(R.layout.item_delegate_left_message)) {
 
         fun bind(leftMessage: Message): Unit = with(leftMessage) {
             itemView.textUser.text = text

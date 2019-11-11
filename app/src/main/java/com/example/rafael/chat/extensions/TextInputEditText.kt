@@ -1,8 +1,8 @@
 package com.example.rafael.chat.extensions
 
 import android.graphics.PorterDuff
-import android.support.design.widget.TextInputEditText
-import android.support.v4.content.ContextCompat
+import com.google.android.material.textfield.TextInputEditText
+import androidx.core.content.ContextCompat
 import com.example.rafael.chat.R
 
 fun TextInputEditText.setColorError(textError: CharSequence?) {

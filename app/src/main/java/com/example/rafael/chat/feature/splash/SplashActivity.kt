@@ -3,7 +3,7 @@ package com.example.rafael.chat.feature.splash
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.rafael.chat.R
 import com.example.rafael.chat.feature.login.ui.LoginActivity
 import com.example.rafael.chat.feature.message.ui.MessageActivity

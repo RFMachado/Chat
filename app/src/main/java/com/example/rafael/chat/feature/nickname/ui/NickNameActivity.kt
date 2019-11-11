@@ -3,8 +3,8 @@ package com.example.rafael.chat.feature.nickname.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TextInputEditText
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
+import androidx.appcompat.app.AppCompatActivity
 import com.example.rafael.chat.MyApplication
 import com.example.rafael.chat.R
 import com.example.rafael.chat.extensions.setColorError
@@ -60,7 +60,7 @@ class NickNameActivity: AppCompatActivity(), Validator.ValidationListener {
             afterTextChanged {
                 validator.validateTill(edtNick)
 
-                if (edtNickName.text.isEmpty())
+                if (edtNickName.text.isNullOrEmpty())
                     edtNickName.setColorError(null)
 
             }

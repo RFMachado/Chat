@@ -3,8 +3,8 @@ package com.example.rafael.chat.feature.privatemessage.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rafael.chat.MyApplication
 import com.example.rafael.chat.R
 import com.example.rafael.chat.extensions.toast
@@ -41,7 +41,7 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, Priv
         MyApplication.coreComponent.inject(this)
         presenter.bind(this)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         recyclerView.adapter = MessageAdapter(items, this)
 
         toolbar.title = message.nickName
@@ -68,8 +68,8 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, Priv
     override fun showMessage(message: Message) {
         items.add(message)
 
-        recyclerView.adapter.notifyItemInserted(items.size-1)
-        recyclerView.layoutManager.scrollToPosition(items.size - 1)
+        recyclerView.adapter?.notifyItemInserted(items.size-1)
+        recyclerView.layoutManager?.scrollToPosition(items.size - 1)
     }
 
     override fun showError() {
@@ -81,7 +81,7 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, Priv
                 .asReversed()
                 .forEach { (index) ->
                     items.removeAt(index)
-                    recyclerView.adapter.notifyItemRemoved(index)
+                    recyclerView.adapter?.notifyItemRemoved(index)
                 }
     }
 
