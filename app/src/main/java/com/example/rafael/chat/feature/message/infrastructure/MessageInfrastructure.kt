@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class MessageInfrastructure @Inject constructor(private val userPref: UserPref): MessageSource {
+class MessageInfrastructure @Inject constructor(private val userPref: UserPref) : MessageSource {
 
     override fun fetchMessage(): Observable<Message> {
         val channelName = userPref.getString(Consts.CHANNEL) ?: "Global 1"
@@ -45,6 +45,5 @@ class MessageInfrastructure @Inject constructor(private val userPref: UserPref):
                 mMessageReference.removeEventListener(childEventListener)
             }
         }
-
     }
 }

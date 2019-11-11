@@ -19,7 +19,7 @@ import com.mobsandgeeks.saripaar.annotation.Password
 import kotlinx.android.synthetic.main.activity_nickname.*
 import javax.inject.Inject
 
-class NickNameActivity: AppCompatActivity(), Validator.ValidationListener {
+class NickNameActivity : AppCompatActivity(), Validator.ValidationListener {
 
     @Inject
     lateinit var presenter: NickNamePresenter
@@ -46,7 +46,6 @@ class NickNameActivity: AppCompatActivity(), Validator.ValidationListener {
         validator.setValidationListener(this)
         validator.validationMode = Validator.Mode.IMMEDIATE
 
-
         btnNext.setOnClickListener {
             val nickName = edtNickName.text.toString()
             presenter.setPreference(nickName)
@@ -62,7 +61,6 @@ class NickNameActivity: AppCompatActivity(), Validator.ValidationListener {
 
                 if (edtNickName.text.isNullOrEmpty())
                     edtNickName.setColorError(null)
-
             }
         }
     }
@@ -77,12 +75,10 @@ class NickNameActivity: AppCompatActivity(), Validator.ValidationListener {
                 edtNick.setColorError(getString(R.string.error_validation_nickname))
             }
         }
-
     }
 
     override fun onValidationSucceeded() {
         btnNext.isEnabled = true
         edtNick.setColorError(null)
     }
-
 }

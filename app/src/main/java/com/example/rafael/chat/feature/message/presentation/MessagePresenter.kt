@@ -10,11 +10,10 @@ import com.google.firebase.database.*
 import io.reactivex.rxkotlin.plusAssign
 import javax.inject.Inject
 
-
 /**
  * Created by Rafael on 21/02/2018.
  */
-class MessagePresenter @Inject constructor(private val source: MessageSource, private val userPref: UserPref): ReactivePresenter<MessageView>() {
+class MessagePresenter @Inject constructor(private val source: MessageSource, private val userPref: UserPref) : ReactivePresenter<MessageView>() {
 
     private fun fetchMessageData() {
         val myId = userPref.getString(Consts.USER_ID)
@@ -22,12 +21,11 @@ class MessagePresenter @Inject constructor(private val source: MessageSource, pr
         disposables += source.fetchMessage()
                 .compose(RxUtils.applySchedulers())
                 .doOnSubscribe { view?.removeAllItems() }
-                .subscribe (
+                .subscribe(
                         { message ->
                             message.isMyUser = myId == message.userId
 
                             view?.showMessage(message)
-
                         },
                         { view?.showError(it) }
                 )
@@ -55,5 +53,4 @@ class MessagePresenter @Inject constructor(private val source: MessageSource, pr
     }
 
     fun getPreference() = userPref.getString(Consts.CHANNEL)
-
 }

@@ -9,5 +9,4 @@ class LoginPresenter @Inject constructor(private val userPref: UserPref) {
     fun setPreference(uid: String?) {
         userPref.set(Consts.USER_ID, uid)
     }
-
 }

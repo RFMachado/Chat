@@ -10,7 +10,7 @@ import com.example.rafael.chat.feature.message.ui.MessageActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class SplashActivity: AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     private var currentUser: FirebaseUser? = null
 
@@ -31,5 +31,4 @@ class SplashActivity: AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
 }

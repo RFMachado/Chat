@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class MessagePrivateInfrastructure @Inject constructor(private val userPref: UserPref): MessagePrivateSource {
+class MessagePrivateInfrastructure @Inject constructor(private val userPref: UserPref) : MessagePrivateSource {
     override fun fetchMessage(key: String): Observable<Message> {
         val mMessageReference = FirebaseDatabase.getInstance().getReference(Consts.PRIVATE).child(key)
 
@@ -43,7 +43,5 @@ class MessagePrivateInfrastructure @Inject constructor(private val userPref: Use
                 mMessageReference.removeEventListener(childEventListener)
             }
         }
-
     }
-
 }

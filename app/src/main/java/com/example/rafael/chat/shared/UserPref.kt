@@ -58,5 +58,4 @@ class UserPref(context: Context) {
 
         editor.commit()
     }
-
 }

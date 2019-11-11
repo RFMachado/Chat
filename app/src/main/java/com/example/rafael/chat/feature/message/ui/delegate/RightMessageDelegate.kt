@@ -8,7 +8,7 @@ import com.example.rafael.chat.feature.message.domain.entities.Message
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import kotlinx.android.synthetic.main.item_delegate_right_message.view.*
 
-class RightMessageDelegate: AbsListItemAdapterDelegate<Message, Any, RightMessageDelegate.ViewHolder>() {
+class RightMessageDelegate : AbsListItemAdapterDelegate<Message, Any, RightMessageDelegate.ViewHolder>() {
 
     inner class ViewHolder(parent: ViewGroup) : androidx.recyclerview.widget.RecyclerView.ViewHolder(parent.inflate(R.layout.item_delegate_right_message)) {
 
@@ -21,5 +21,4 @@ class RightMessageDelegate: AbsListItemAdapterDelegate<Message, Any, RightMessag
     override fun onCreateViewHolder(parent: ViewGroup) = ViewHolder(parent)
     override fun isForViewType(item: Any, items: MutableList<Any>, position: Int) = item is Message && item.isMyUser
     override fun onBindViewHolder(item: Message, viewHolder: ViewHolder, payloads: MutableList<Any>) = viewHolder.bind(item)
-
 }

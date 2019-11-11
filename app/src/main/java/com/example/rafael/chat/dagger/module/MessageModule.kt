@@ -15,5 +15,4 @@ class MessageModule {
 
     @Provides
     fun providesPrivateMessageSource(messagePrivateInfrastructure: MessagePrivateInfrastructure): MessagePrivateSource = messagePrivateInfrastructure
-
 }

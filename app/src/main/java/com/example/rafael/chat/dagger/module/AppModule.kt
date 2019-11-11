@@ -11,10 +11,10 @@ import javax.inject.Singleton
 class AppModule(var mApplication: Application) {
 
     @Provides
-    fun provideApplication() =  mApplication
+    fun provideApplication() = mApplication
 
     @Provides
-    fun provideContext() =  mApplication.applicationContext
+    fun provideContext() = mApplication.applicationContext
 
     @Provides
     @Singleton

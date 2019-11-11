@@ -15,8 +15,7 @@ import com.example.rafael.chat.feature.privatemessage.presentation.PrivateMessag
 import kotlinx.android.synthetic.main.activity_private_message.*
 import javax.inject.Inject
 
-
-class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, PrivateMessageView {
+class PrivateMessageActivity : AppCompatActivity(), MessageAdapter.Listener, PrivateMessageView {
 
     private val message by lazy { intent.getParcelableExtra(EXTRA_MESSAGE) as Message }
     private var items = ArrayList<Any>()
@@ -49,7 +48,6 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, Priv
         bindListeners()
 
         presenter.fetchMessage(message.userId)
-
     }
 
     private fun bindListeners() {
@@ -68,7 +66,7 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, Priv
     override fun showMessage(message: Message) {
         items.add(message)
 
-        recyclerView.adapter?.notifyItemInserted(items.size-1)
+        recyclerView.adapter?.notifyItemInserted(items.size - 1)
         recyclerView.layoutManager?.scrollToPosition(items.size - 1)
     }
 
@@ -86,12 +84,10 @@ class PrivateMessageActivity: AppCompatActivity(), MessageAdapter.Listener, Priv
     }
 
     override fun onClickMessage(leftMessage: Message) {
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
         presenter.unbind()
     }
-
 }

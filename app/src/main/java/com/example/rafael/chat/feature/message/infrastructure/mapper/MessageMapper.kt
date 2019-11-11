@@ -11,5 +11,4 @@ object MessageMapper {
     fun map(payload: MessagePayload): Message {
             return Message(payload.text, payload.nickName, payload.userId)
     }
-
 }

@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import javax.inject.Inject
 
-
 class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavigationItemSelectedListener, MessageAdapter.Listener {
 
     var items = ArrayList<Any>()
@@ -48,15 +47,14 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
         navigationBar()
 
-        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        (recyclerView.layoutManager as androidx.recyclerview.widget.LinearLayoutManager).stackFromEnd = true
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        (recyclerView.layoutManager as LinearLayoutManager).stackFromEnd = true
         recyclerView.adapter = MessageAdapter(items, this)
 
-      channel = if(presenter.getPreference() == "")
-          "Global 1"
+        channel = if (presenter.getPreference() == "")
+            "Global 1"
         else
-          presenter.getPreference()
-
+            presenter.getPreference()
 
         presenter.changeChannel(channel)
         supportActionBar?.title = channel
@@ -71,7 +69,7 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        return when(item.itemId) {
+        return when (item.itemId) {
 
             R.id.log_out -> {
                 logout()
@@ -83,7 +81,6 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
             }
             else -> super.onOptionsItemSelected(item)
         }
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -115,7 +112,6 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
                 }
 
         loading.show()
-
     }
 
     override fun onBackPressed() {
@@ -152,7 +148,7 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
     override fun showMessage(message: Message) {
         items.add(message)
 
-        recyclerView.adapter?.notifyItemInserted(items.size-1)
+        recyclerView.adapter?.notifyItemInserted(items.size - 1)
         recyclerView.layoutManager?.scrollToPosition(items.size - 1)
 
         loading.hide()
@@ -181,5 +177,4 @@ class MessageActivity : AppCompatActivity(), MessageView, NavigationView.OnNavig
         super.onDestroy()
         presenter.unbind()
     }
-
 }

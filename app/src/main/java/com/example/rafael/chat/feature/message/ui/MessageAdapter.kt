@@ -5,11 +5,10 @@ import com.example.rafael.chat.feature.message.ui.delegate.LeftMessageDelegate
 import com.example.rafael.chat.feature.message.ui.delegate.RightMessageDelegate
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 
-
 /**
  * Created by Rafael on 22/02/2018.
  */
-class MessageAdapter constructor(messages: ArrayList<Any>, listener: MessageAdapter.Listener): ListDelegationAdapter<List<Any>>() {
+class MessageAdapter constructor(messages: ArrayList<Any>, listener: MessageAdapter.Listener) : ListDelegationAdapter<List<Any>>() {
 
     interface Listener {
         fun onClickMessage(leftMessage: Message)
@@ -23,5 +22,4 @@ class MessageAdapter constructor(messages: ArrayList<Any>, listener: MessageAdap
 
         setItems(messages)
     }
-
 }

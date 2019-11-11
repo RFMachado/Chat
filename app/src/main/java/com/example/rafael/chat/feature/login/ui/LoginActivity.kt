@@ -31,8 +31,7 @@ import timber.log.Timber
 import javax.inject.Inject
 import com.google.firebase.auth.FirebaseUser
 
-
-class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
+class LoginActivity : AppCompatActivity(), Validator.ValidationListener {
 
     private val mAuth = FirebaseAuth.getInstance()
     private var currentUser: FirebaseUser? = null
@@ -107,7 +106,6 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
             }
         }
 
-
         btnSignUp.setOnClickListener {
             val email = edtEmail.text.toString()
             val password = edtPassword.text.toString()
@@ -141,7 +139,6 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
                             val intent = Intent(this, NickNameActivity::class.java)
                             startActivity(intent)
                             finish()
-
                         } else
                             toast(R.string.authentication_failed)
                     }
@@ -150,7 +147,6 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
         btnGoogle.setOnClickListener {
             signIn()
         }
-
     }
 
     private fun signIn() {
@@ -170,13 +166,11 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
                 account?.let { acc ->
                     firebaseAuthWithGoogle(acc)
                 }
-
             } catch (e: ApiException) {
                 Timber.e(e)
                 toast(R.string.authentication_failed_google)
             }
         }
-
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
@@ -191,7 +185,6 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
                         val intent = Intent(this, NickNameActivity::class.java)
                         startActivity(intent)
                         finish()
-
                     } else {
                         println("signInWithCredential:failure")
                     }
@@ -225,5 +218,4 @@ class LoginActivity: AppCompatActivity(), Validator.ValidationListener {
         editEmail.setColorError(null)
         editPassword.setColorError(null)
     }
-
 }

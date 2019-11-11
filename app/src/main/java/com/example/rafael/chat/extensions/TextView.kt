@@ -38,5 +38,4 @@ class KTextWatcher : TextWatcher {
     fun afterTextChanged(listener: (String) -> Unit) {
         _afterTextChanged = listener
     }
-
 }

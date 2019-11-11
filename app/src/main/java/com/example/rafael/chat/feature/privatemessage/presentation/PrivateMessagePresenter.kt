@@ -10,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase
 import io.reactivex.rxkotlin.plusAssign
 import javax.inject.Inject
 
-class PrivateMessagePresenter @Inject constructor(private val source: MessagePrivateSource, private val userPref: UserPref): ReactivePresenter<PrivateMessageView>() {
+class PrivateMessagePresenter @Inject constructor(private val source: MessagePrivateSource, private val userPref: UserPref) : ReactivePresenter<PrivateMessageView>() {
 
     fun sendMessage(input: String, otherKey: String) {
         val message = MessagePrivatePayload()
@@ -40,15 +40,13 @@ class PrivateMessagePresenter @Inject constructor(private val source: MessagePri
         disposables += source.fetchMessage(key)
                 .compose(RxUtils.applySchedulers())
                 .doOnSubscribe { view?.removeAllItems() }
-                .subscribe (
+                .subscribe(
                         { message ->
                             message.isMyUser = myKey == message.userId
 
                             view?.showMessage(message)
-
                         },
                         { view?.showError() }
                 )
     }
-
 }

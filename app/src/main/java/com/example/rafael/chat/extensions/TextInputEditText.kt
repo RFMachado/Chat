@@ -12,5 +12,4 @@ fun TextInputEditText.setColorError(textError: CharSequence?) {
         background.clearColorFilter()
     else
         background.setColorFilter(ContextCompat.getColor(context, R.color.red), PorterDuff.Mode.SRC_ATOP)
-
 }

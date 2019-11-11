@@ -6,12 +6,11 @@ import com.example.rafael.chat.dagger.component.AppComponent
 import com.example.rafael.chat.dagger.module.AppModule
 import timber.log.Timber
 
-class MyApplication: Application() {
+class MyApplication : Application() {
 
     companion object {
         lateinit var coreComponent: AppComponent
     }
-
 
     override fun onCreate() {
         super.onCreate()
@@ -31,5 +30,4 @@ class MyApplication: Application() {
                 .appModule(AppModule(this))
                 .build()
     }
-
 }
