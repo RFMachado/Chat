@@ -3,7 +3,6 @@ package com.example.rafael.chat.feature.login.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.textfield.TextInputEditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rafael.chat.MyApplication
 import com.example.rafael.chat.R
@@ -18,7 +17,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
@@ -29,7 +30,6 @@ import com.mobsandgeeks.saripaar.annotation.Password
 import kotlinx.android.synthetic.main.activity_login.*
 import timber.log.Timber
 import javax.inject.Inject
-import com.google.firebase.auth.FirebaseUser
 
 class LoginActivity : AppCompatActivity(), Validator.ValidationListener {
 
@@ -113,14 +113,14 @@ class LoginActivity : AppCompatActivity(), Validator.ValidationListener {
             validator.validate()
 
             if (!edtEmail.text.isNullOrEmpty() && !edtPassword.text.isNullOrEmpty())
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            println("createUserWithEmail:success")
-                            currentUser = mAuth.currentUser
-                        } else
-                            toast(R.string.authentication_failed)
-                    }
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                println("createUserWithEmail:success")
+                                currentUser = mAuth.currentUser
+                            } else
+                                toast(R.string.authentication_failed)
+                        }
         }
 
         btnSignIn.setOnClickListener {
@@ -130,18 +130,18 @@ class LoginActivity : AppCompatActivity(), Validator.ValidationListener {
             validator.validate()
 
             if (!edtEmail.text.isNullOrEmpty() && !edtPassword.text.isNullOrEmpty())
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            println("signInWithEmail:success")
-                            presenter.setPreference(mAuth.currentUser?.uid)
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                println("signInWithEmail:success")
+                                presenter.setPreference(mAuth.currentUser?.uid)
 
-                            val intent = Intent(this, NickNameActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else
-                            toast(R.string.authentication_failed)
-                    }
+                                val intent = Intent(this, NickNameActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else
+                                toast(R.string.authentication_failed)
+                        }
         }
 
         btnGoogle.setOnClickListener {
