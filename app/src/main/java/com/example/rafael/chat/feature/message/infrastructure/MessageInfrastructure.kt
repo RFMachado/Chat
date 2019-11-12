@@ -16,7 +16,7 @@ import javax.inject.Inject
 class MessageInfrastructure @Inject constructor(private val userPref: UserPref) : MessageSource {
 
     override fun fetchMessage(): Observable<Message> {
-        val channelName = userPref.getString(Consts.CHANNEL) ?: "Global 1"
+        val channelName = userPref.getString(Consts.CHANNEL, "Global 1")
         val mMessageReference = FirebaseDatabase.getInstance().getReference(Consts.CHANNEL).child(channelName)
 
         return Observable.create { emitter ->

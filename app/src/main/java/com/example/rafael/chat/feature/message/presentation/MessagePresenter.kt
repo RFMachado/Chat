@@ -32,12 +32,15 @@ class MessagePresenter @Inject constructor(private val source: MessageSource, pr
     }
 
     fun sendMessage(input: String) {
-        val message = MessagePayload()
-        val channelName = userPref.getString(Consts.CHANNEL) ?: "message"
+        val channelName = userPref.getString(Consts.CHANNEL, "message")
+        val userId = userPref.getString(Consts.USER_ID, "")
+        val nickName = userPref.getString(Consts.USER_NICKNAME, "")
 
-        message.text = input
-        message.userId = userPref.getString(Consts.USER_ID) ?: ""
-        message.nickName = userPref.getString(Consts.USER_NICKNAME) ?: ""
+        val message = MessagePayload(
+            text = input,
+            userId = userId,
+            nickName = nickName
+        )
 
         FirebaseDatabase.getInstance()
                 .getReference(Consts.CHANNEL).child(channelName)

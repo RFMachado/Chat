@@ -3,8 +3,8 @@ package com.example.rafael.chat.feature.message.infrastructure.models
 /**
  * Created by Rafael on 21/02/2018.
  */
-class MessagePayload {
-    lateinit var text: String
-    lateinit var userId: String
-    lateinit var nickName: String
-}
+class MessagePayload (
+    var text: String,
+    var userId: String,
+    var nickName: String
+)
