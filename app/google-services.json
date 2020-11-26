@@ -15,48 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "990988495064-4dahimq3ne8pvhpaanbq4p0i3t464onm.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDq7ObszO-RA568ZqlIH98gPwwwjH6uyls"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "990988495064-4dahimq3ne8pvhpaanbq4p0i3t464onm.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:990988495064:android:ce796adcc15ae6e4",
-        "android_client_info": {
-          "package_name": "com.example.rafael.chat"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "990988495064-8cs730qmjoo5us7mq8vm9u2v034197mm.apps.googleusercontent.com",
+          "client_id": "990988495064-54e6b5g3soeajf0c3dp0mjtcc66sbe48.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.rafael.chat",
-            "certificate_hash": "6718091059b3340ec5b7ad247ee0e3c2f293e9a6"
+            "package_name": "br.com.global.chat",
+            "certificate_hash": "50f30414c7828f19bd4a2441fb24d224513f5312"
           }
         },
         {
-          "client_id": "990988495064-6h7j8ec6jm194nii0k75uroualdre9vp.apps.googleusercontent.com",
+          "client_id": "990988495064-4r66mi248evvnj8p5410si8bs7ub04s8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.rafael.chat",
-            "certificate_hash": "4ee371da9b28e6388c39f78a50c7bff4f0decf0f"
+            "package_name": "br.com.global.chat",
+            "certificate_hash": "d5bb1f956de89b17ea8e2c33632695e6074d8364"
           }
         },
         {
