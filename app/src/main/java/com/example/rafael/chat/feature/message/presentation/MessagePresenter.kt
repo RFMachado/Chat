@@ -32,9 +32,9 @@ class MessagePresenter @Inject constructor(private val source: MessageSource, pr
     }
 
     fun sendMessage(input: String) {
-        val channelName = userPref.getString(Consts.CHANNEL, "message")
-        val userId = userPref.getString(Consts.USER_ID, "")
-        val nickName = userPref.getString(Consts.USER_NICKNAME, "")
+        val channelName = userPref.getString(Consts.CHANNEL, "message") ?: "message"
+        val userId = userPref.getString(Consts.USER_ID, "") ?: ""
+        val nickName = userPref.getString(Consts.USER_NICKNAME, "") ?: ""
 
         val message = MessagePayload(
             text = input,
@@ -55,5 +55,5 @@ class MessagePresenter @Inject constructor(private val source: MessageSource, pr
         fetchMessageData()
     }
 
-    fun getPreference() = userPref.getString(Consts.CHANNEL)
+    fun getPreference() = userPref.getString(Consts.CHANNEL) ?: ""
 }

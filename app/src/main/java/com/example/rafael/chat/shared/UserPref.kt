@@ -25,7 +25,7 @@ class UserPref(context: Context) {
     }
 
     @JvmOverloads
-    fun getString(key: String, strdefault: String = ""): String {
+    fun getString(key: String, strdefault: String = ""): String? {
         return sharedPref.getString(key, strdefault)
     }
 
